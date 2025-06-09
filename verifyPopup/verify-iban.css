@@ -1,0 +1,30 @@
+body {
+    font-family: "Inter", Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.layout-container {
+    width: 497px; /* 477 */
+    height: 556px; /* 546 */
+    align-content: center;
+}
+
+.tall-alert {
+    height: auto;
+}
+
+:root {
+    --bs-border-color: rgba(95, 102, 173, 0.15);
+    --bs-box-shadow-lg: 0 20px 53px -30px #5f66ad91;
+}
+
+.btn {
+    --bs-btn-padding-y: 0.475rem;
+}
+
+.form-control {
+    padding: .675rem .75rem;
+}

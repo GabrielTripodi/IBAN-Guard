@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify IBAN</title>
+
+    <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+    <link href="verify-iban.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="p-4 layout-container">
+        <h1 class="h3 mb-4 fw-bold text-center">Verify IBAN</h1>
+        <div class="mb-3">
+            <label for="name" class="form-label fw-medium">Person or Company Name</label>
+            <input type="text" id="name" placeholder="Enter the name (person or company)" class="form-control">
+            <label for="company-name" class="mt-3">
+                <input class="form-check-input" type="checkbox" id="company-name"> This is a company name
+            </label>
+        </div>
+        <div class="mb-3">
+            <label for="surname" class="form-label fw-medium">Surname</label>
+            <input type="text" id="surname" placeholder="Enter the surname" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="iban" class="form-label fw-medium">IBAN</label>
+            <input type="text" id="iban" placeholder="Enter the IBAN" class="form-control">
+        </div>
+        <button class="btn btn-primary w-100 mt-3" type="button" id="verify-btn">Verify IBAN</button>
+    </div>
+
+    <script src="/modules/sweetalert2.all.min.js"></script>
+    <script type="module" src="verify-iban.js"></script>
+</body>
+</html>

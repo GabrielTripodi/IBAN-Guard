@@ -1,0 +1,81 @@
+body {
+    font-family: "Inter", Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    margin: 35px;
+}
+
+h1 {
+    margin: 0 0 25px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: blue;
+}
+
+input:checked+.slider:before {
+    transform: translateX(17px);
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+#number-container {
+    font-size: 15px;
+}
+
+#new-messages-number {
+    margin-left: 4px;
+    font-family: "Inter", Arial, sans-serif;
+}
