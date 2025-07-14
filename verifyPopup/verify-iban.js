@@ -1,4 +1,4 @@
-import { API, sendRequest, showFailureNotification, showConfirmationAlert, handleApiResponse } from "/modules/utilities.js";
+import { API, sendRequest, getAlert, showConfirmationAlert, handleApiResponse } from "/modules/utilities.js";
 
 const verifyButton = document.getElementById("verify-btn");
 const nameInput = document.getElementById("name");
@@ -28,7 +28,7 @@ verifyButton.addEventListener("click", async function () {
   const response = await sendRequest(url, data);
 
   if (response.hasOwnProperty("failed")) {
-    showFailureNotification();
+    getAlert("Error!", "There was a problem verifying the IBAN. Please try again later.", "error");
     console.error("Error: unable to connect to the server.");
     return;
   }

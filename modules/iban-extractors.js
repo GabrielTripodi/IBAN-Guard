@@ -54,11 +54,13 @@ export async function extractIbanFromBody(message) {
     const allIbans = [...new Set(match.map((iban) => removeIbanSpaces(iban).toUpperCase()))];
     if (allIbans.length > 1) {
       const activeTabId = await getActiveTabId();
-      messenger.tabs.sendMessage(activeTabId, {
-        title: "Multiple IBANs",
-        text: 
-          `Multiple IBANs were found in the email body. This may indicate a fraud attempt. Only the first IBAN will be verified.<br>Detected IBANs: ${allIbans.join(", ")}.`
-      });
+      if (activeTabId !== null) {
+        messenger.tabs.sendMessage(activeTabId, {
+          title: "Multiple IBANs",
+          text: 
+            `Multiple IBANs were found in the email body. This may indicate a fraud attempt. Only the first IBAN will be verified.<br>Detected IBANs: ${allIbans.join(", ")}.`
+        });
+      }
     }
     if (!isValidIban(iban)) {
       showNotification(
@@ -210,12 +212,14 @@ export async function extractIbanFromPdf(messageId, attachments) {
         const allIbans = [...new Set(match.map((iban) => removeIbanSpaces(iban).toUpperCase()))];
         if (allIbans.length > 1) {
           const activeTabId = await getActiveTabId();
-          messenger.tabs.sendMessage(activeTabId, {
-            title: "Multiple IBANs",
-            text: `Multiple IBANs were found in the attached PDF '${
-              fileName
-            }'. This may indicate a fraud attempt. Only the first IBAN will be verified.<br>Detected IBANs: ${allIbans.join(", ")}.`
-          });
+          if (activeTabId !== null) {
+            messenger.tabs.sendMessage(activeTabId, {
+              title: "Multiple IBANs",
+              text: `Multiple IBANs were found in the attached PDF '${
+                fileName
+              }'. This may indicate a fraud attempt. Only the first IBAN will be verified.<br>Detected IBANs: ${allIbans.join(", ")}.`
+            });
+          }
         }
         return [iban, fileName];
       }

@@ -125,7 +125,8 @@ export function showFailureNotification() {
 
 export async function getActiveTabId() {
   const activeTab = (await messenger.tabs.query({ active: true, currentWindow: true }))[0];
-  return activeTab.id;
+  return activeTab.type !== "mail" ? activeTab.id : null;
+  // return activeTab.id;
 }
 
 export function toLower(string) {

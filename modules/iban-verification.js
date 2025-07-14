@@ -47,12 +47,14 @@ export async function verifySenderIban(iban, message, ibanSource = "email body",
       result.message,
       `The IBAN found in the ${ibanSource} matches the sender ${mailbox.name}.`
     );
-    messenger.tabs.sendMessage(activeTabId, {
-      title: result.message,
-      text: `The IBAN found in the ${ibanSource}${
-        fileName ? ` '${fileName}'` : ""
-      } matches the sender ${mailbox.name}.`
-    });
+    if (activeTabId !== null) {
+      messenger.tabs.sendMessage(activeTabId, {
+        title: result.message,
+        text: `The IBAN found in the ${ibanSource}${
+          fileName ? ` '${fileName}'` : ""
+        } matches the sender ${mailbox.name}.`
+      });
+    }
   } 
   else {
     showNotification(
@@ -60,14 +62,16 @@ export async function verifySenderIban(iban, message, ibanSource = "email body",
       result.message,
       `The IBAN found in the ${ibanSource} DOES NOT match the sender ${mailbox.name}.`
     );
-    messenger.tabs.sendMessage(activeTabId, {
-      title: result.message,
-      text: `The IBAN found in the ${ibanSource}${
-        fileName ? ` '${fileName}'` : ""
-      } DOES NOT match the sender ${
-        mailbox.name
-      }. Please review the email carefully before making any payments!`,
-    });
+    if (activeTabId !== null) {
+      messenger.tabs.sendMessage(activeTabId, {
+        title: result.message,
+        text: `The IBAN found in the ${ibanSource}${
+          fileName ? ` '${fileName}'` : ""
+        } DOES NOT match the sender ${
+          mailbox.name
+        }. Please review the email carefully before making any payments!`,
+      });
+    }
   }
 }
 
@@ -106,10 +110,12 @@ export async function verifyBeneficiaryIban(iban, beneficiary, fileName) {
       result.message,
       `The IBAN found in the attached XML matches the beneficiary ${beneficiary}.`
     );
-    messenger.tabs.sendMessage(activeTabId, {
-      title: result.message,
-      text: `The IBAN found in the attached XML '${fileName}' matches the beneficiary ${beneficiary}.`
-    });
+    if (activeTabId !== null) {
+      messenger.tabs.sendMessage(activeTabId, {
+        title: result.message,
+        text: `The IBAN found in the attached XML '${fileName}' matches the beneficiary ${beneficiary}.`
+      });
+    }
   } 
   else {
     showNotification(
@@ -117,12 +123,14 @@ export async function verifyBeneficiaryIban(iban, beneficiary, fileName) {
       result.message,
       `The IBAN found in the attached XML DOES NOT match the beneficiary ${beneficiary}.`
     );
-    messenger.tabs.sendMessage(activeTabId, {
-      title: result.message,
-      text: `The IBAN found in the attached XML '${fileName}' DOES NOT match the beneficiary ${
-        beneficiary
-    }. Please review the email carefully before making any payments!`
-    });
+    if (activeTabId !== null) {
+      messenger.tabs.sendMessage(activeTabId, {
+        title: result.message,
+        text: `The IBAN found in the attached XML '${fileName}' DOES NOT match the beneficiary ${
+          beneficiary
+      }. Please review the email carefully before making any payments!`
+      });
+    }
   }
 }
 
